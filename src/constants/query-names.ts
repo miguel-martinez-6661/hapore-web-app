@@ -1,0 +1,4 @@
+export const TicketQuery = {
+  FETCH_TICKETS: "FETCH_TICKETS",
+  FETCH_TICKET_TYPES: "FETCH_TICKET_TYPES",
+};

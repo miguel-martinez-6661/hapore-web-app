@@ -1,0 +1,70 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  ADMIN
+  MEMBER
+  STAFF
+}
+
+model User {
+  id              Int      @id @default(autoincrement())
+  email           String   @unique
+  password        String   
+  name            String
+  active          Boolean  @default(true)
+  applyCommission Boolean  @default(true)
+  createdAt       DateTime @default(now())
+  Sale            Sale[]
+}
+
+model TicketType {
+  id          Int      @id @default(autoincrement())
+  name        String
+  description String
+  commission  Int      @default(0)
+  grossPrice  Float    @default(0)
+  netPrice    Float    @default(0)
+  active      Boolean  @default(true)
+  tickets     Ticket[]
+  createdAt   DateTime @default(now())
+}
+
+model Ticket {
+  id                  Int         @id @default(autoincrement())
+  ticketNumber        String      @unique @default(cuid())
+  TicketType          TicketType? @relation(fields: [ticketTypeId], references: [id])
+  ticketTypeId        Int?
+  active              Boolean     @default(true)
+  used                Boolean     @default(false)
+  Sale                Sale        @relation(fields: [saleId], references: [id])
+  saleId              Int
+  isCommissionApplied Boolean     @default(false)
+}
+
+model Customer {
+  dni       String   @id @unique
+  name      String?
+  phone     String
+  createdAt DateTime @default(now())
+  Sales     Sale[]
+}
+
+model Sale {
+  id          Int      @id @default(autoincrement())
+  customerDni String
+  total       Float    @default(0)
+  netTotal    Float    @default(0)
+  createdAt   DateTime @default(now())
+  active      Boolean  @default(true)
+  userId      Int
+  User        User     @relation(fields: [userId], references: [id])
+  Tickets     Ticket[]
+  Customer    Customer @relation(fields: [customerDni], references: [dni])
+}
