@@ -1,7 +1,7 @@
 import React from "react";
-import { Button, Slide } from "@mui/material";
 import Image from "next/image";
 import Link from "next/link";
+import { Button, Slide } from "@mui/material";
 import { RiDashboard2Line, RiQrScan2Line, RiTicket2Line } from "react-icons/ri";
 
 interface MobileMenuProps {
@@ -62,7 +62,7 @@ export const MobileMenu = ({
             <li>
               <Link href="/scan" className="flex text-white" onClick={onClose}>
                 <RiQrScan2Line size={24} className="mb-6 mr-2" />
-                <span>Scanner</span>
+                <span>Escaneo de QR</span>
               </Link>
             </li>
           </ul>

@@ -4,6 +4,7 @@ import { HiPlus, HiTrash } from "react-icons/hi";
 import MUIDataTable from "mui-datatables";
 import Page from "@/components/page";
 import { useSoldTickets } from "./hooks/use-sold-tickets";
+import { LoadingScreen } from "@/components/loading-screen";
 
 const Tickets = () => {
   const {
@@ -19,7 +20,9 @@ const Tickets = () => {
 
   return (
     <Page>
-      <div className="container h-screen">
+      <LoadingScreen visible={isLoading} />
+
+      <div>
         <h1 className="text-4xl font-bold m-5 text-gray-800">
           Entradas Vendidas
         </h1>

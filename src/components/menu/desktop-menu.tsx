@@ -58,7 +58,7 @@ export const DesktopMenu = ({ onClickLogout }: DesktopMenuProps) => {
             className="flex items-center pl-3 py-3 pr-4 text-gray-50 rounded hover:text-indigo-500"
           >
             <RiQrScan2Line size={24} className="mr-2" />
-            <span>Escaneo</span>
+            <span>Escaneo de QR</span>
           </Link>
         </li>
         <li>

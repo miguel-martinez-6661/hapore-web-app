@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import { colors } from "@/constants";
+import { useAuthContext } from "@/providers/auth-provider/use-auth-context";
 import { MobileMenu } from "./mobile-menu";
 import { DesktopMenu } from "./desktop-menu";
 
@@ -13,9 +14,12 @@ const MobileMenuButton = ({ onClick }: { onClick: () => void }) => {
 };
 
 export const AppMenu = () => {
+  const { logout } = useAuthContext();
   const [showMobileMenu, setShowMobileMenu] = useState(false);
 
-  const handleLogout = () => {};
+  const handleLogout = async () => {
+    await logout();
+  };
 
   const handleShowMobileMenu = () => {
     setShowMobileMenu(!showMobileMenu);
