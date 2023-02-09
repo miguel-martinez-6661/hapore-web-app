@@ -1,6 +1,9 @@
 import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
 import prisma from "prisma/context";
-import { RegisterParams } from "@/types/api-auth-request";
+import { LoginParams, RegisterParams } from "@/types/api-auth-request";
+
+const { NEXTAUTH_SECRET } = process.env;
 
 export const registerUser = async (payload: RegisterParams) => {
   try {
@@ -35,5 +38,42 @@ export const registerUser = async (payload: RegisterParams) => {
   } catch (err: any) {
     console.error(err);
     throw new Error(`No se pudo crear el usuario. ${err.message}`);
+  }
+};
+
+export const loginUser = async (payload: LoginParams) => {
+  try {
+    const { email, password } = payload;
+
+    if (!(email && password)) {
+      throw new Error("Email y contraseña requeridos");
+    }
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email,
+      },
+    });
+
+    if (
+      !!user &&
+      (await bcrypt.compare(password, user.password)) &&
+      NEXTAUTH_SECRET
+    ) {
+      // Create token
+      const token = jwt.sign({ user_id: user.id, email }, NEXTAUTH_SECRET, {
+        expiresIn: "2h",
+      });
+
+      return {
+        ...user,
+        token,
+      };
+    } else {
+      throw new Error("Email o contraseña incorrectos");
+    }
+  } catch (err) {
+    console.error(err);
+    throw err;
   }
 };

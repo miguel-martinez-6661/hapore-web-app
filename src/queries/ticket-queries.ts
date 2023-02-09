@@ -2,6 +2,7 @@ import httpClient from "@/network/httpClient";
 import { FetchTicketsParams } from "@/types/api-tickets-request";
 
 export const fetchTickets = async ({ page }: FetchTicketsParams) => {
+  console.log({ httpClient: httpClient.getUri() });
   return await httpClient.get(`/ticket/tickets?page=${page}`);
 };
 

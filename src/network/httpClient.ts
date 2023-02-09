@@ -1,6 +1,5 @@
 import axios, { AxiosInstance } from "axios";
 
-const HOST = process.env.API_HOST;
 class HttpClient {
   private static classInstance: AxiosInstance;
 
@@ -8,7 +7,7 @@ class HttpClient {
     if (!this.classInstance) {
       // @ts-ignore
       this.classInstance = new axios.create({
-        baseURL: `${HOST}/api`,
+        baseURL: `${process.env.NEXT_PUBLIC_API_URL}/api`,
         headers: {
           "Content-Type": "application/json",
         },
@@ -18,5 +17,4 @@ class HttpClient {
     return this.classInstance;
   }
 }
-
 export default HttpClient.getInstance();
