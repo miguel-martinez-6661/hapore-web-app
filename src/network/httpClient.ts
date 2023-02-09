@@ -15,16 +15,6 @@ class HttpClient {
 
     return this.classInstance;
   }
-
-  public static setToken(token: string) {
-    this.classInstance.defaults.headers.common["Authorization"] = token;
-  }
-
-  public static removeToken() {
-    delete this.classInstance.defaults.headers.common["Authorization"];
-  }
 }
-
-export { HttpClient };
 
 export default HttpClient.getInstance();

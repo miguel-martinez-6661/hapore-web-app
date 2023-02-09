@@ -37,8 +37,9 @@ export const useSoldTickets = () => {
     ]);
   }, [apiTickets]);
 
-  const handleRowClick = () => {
-    // setSelectedRow(selected);
+  const handleRowClick = (selected: any) => {
+    console.log({ selected });
+    setSelectedRow(selected);
   };
 
   const handlePageChange = (newPage: number) => {

@@ -10,18 +10,15 @@ interface DesktopMenuProps {
 
 export const DesktopMenu = ({ onClickLogout }: DesktopMenuProps) => {
   return (
-    <div className="invisible lg:visible flex flex-col p-3 h-0 lg:h-screen bg-gradient-to-r from-gray-900 to-gray-700">
+    <div className="invisible lg:visible flex flex-col p-3 h-0 lg:h-screen bg-gray-900">
       <ul>
         <Image
-          className="mb-5"
+          className="mb-5 p-5"
           src="/hapore-logo.png"
-          width={800}
-          height={400}
+          width={500}
+          height={200}
           alt="hapore-logo"
         />
-        <h3 className="mb-2 text-xs uppercase text-gray-500 font-medium">
-          Menu
-        </h3>
 
         <li>
           <Link
@@ -64,7 +61,7 @@ export const DesktopMenu = ({ onClickLogout }: DesktopMenuProps) => {
         <li>
           <Button color="error" onClick={onClickLogout}>
             <HiLogout size={24} className="mx-2" />
-            <span>Salir</span>
+            <span>Cerrar Sesion</span>
           </Button>
         </li>
       </ul>

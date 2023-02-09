@@ -6,7 +6,7 @@ import { useLogin } from "./hooks/use-login";
 import { LoginValidationSchema } from "@/validations/login-validation-schema";
 
 const Login = () => {
-  const { initialFormValues, handleSubmitForm, isLoading, error } = useLogin();
+  const { initialFormValues, handleSubmitForm } = useLogin();
 
   return (
     <div className="flex flex-col h-screen bg-gray-800 justify-center items-center">
@@ -17,8 +17,8 @@ const Login = () => {
         height={300}
         alt="icon"
       />
-      <div className="flex flex-col bg-white p-8  w-3/4 md:w-1/4 items-center rounded">
-        <h1 className="text-4xl font-bold text-gray-800 ">Login</h1>
+      <div className="flex flex-col bg-white p-8  w-3/4 lg:w-1/4 items-center rounded">
+        <h1 className="text-4xl font-bold text-gray-800">Login</h1>
 
         <Formik
           initialValues={initialFormValues}
@@ -52,17 +52,17 @@ const Login = () => {
                 <p className="text-sm text-red-500 -mt-3">{errors.password}</p>
               ) : null}
 
-              {error ? (
+              {/* {error ? (
                 <p className="text-red-500 text-sm text-center">
                   {error.message}
                 </p>
-              ) : null}
+              ) : null} */}
               <Button
                 type="submit"
                 className="bg-blue-500"
                 title="Confirmar"
                 variant="contained"
-                disabled={isLoading}
+                // disabled={isLoading}
               >
                 Ingresar
               </Button>

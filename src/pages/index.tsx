@@ -19,7 +19,7 @@ const Home = () => {
 
   return (
     <Page>
-      <div className="container pb-24">
+      <div className="container p-5">
         <div className="m-4">
           <h1 className="text-4xl font-bold m-5 text-gray-800 drop-shadow-lg">
             Inicio

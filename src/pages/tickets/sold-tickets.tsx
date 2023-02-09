@@ -45,10 +45,11 @@ const Tickets = () => {
 
         <div className="w-full mt-5 p-5">
           <MUIDataTable
-            title={"Entradas Vendidas"}
+            title=""
             columns={columns}
             data={data}
             options={{
+              responsive: "standard",
               count: totalData,
               pagination: true,
               onChangePage: handlePageChange,
