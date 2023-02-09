@@ -3,8 +3,8 @@ import Link from "next/link";
 import { HiPlus, HiTrash } from "react-icons/hi";
 import MUIDataTable from "mui-datatables";
 import Page from "@/components/page";
-import { useSoldTickets } from "./hooks/use-sold-tickets";
 import { LoadingScreen } from "@/components/loading-screen";
+import { useSoldTickets } from "@/hooks/tickets/use-sold-tickets";
 
 const Tickets = () => {
   const {

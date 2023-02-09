@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import MUIDataTable from "mui-datatables";
 import { HiPlus } from "react-icons/hi";
+import { useTicketTypes } from "@/hooks/tickets/use-ticket-types";
 import Page from "@/components/page";
-import { useTicketTypes } from "./hooks/use-ticket-types";
 
 const TicketTypes = () => {
   const { data, columns } = useTicketTypes();

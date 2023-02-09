@@ -1,8 +1,8 @@
 import React from "react";
 import { Formik } from "formik";
 import { FormControlLabel, Switch, TextField } from "@mui/material";
+import { useTicketTypes } from "@/hooks/tickets/use-ticket-types";
 import Page from "@/components/page";
-import { useTicketTypes } from "./hooks/use-ticket-types";
 
 const initialFormValues = {
   id: 0,

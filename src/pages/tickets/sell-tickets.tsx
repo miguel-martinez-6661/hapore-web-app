@@ -2,7 +2,7 @@ import React from "react";
 import { TextField } from "@mui/material";
 import Page from "@/components/page";
 import { Formik } from "formik";
-import { useSellTickets } from "./hooks/use-sell-tickets";
+import { useSellTickets } from "@/hooks/tickets/use-sell-tickets";
 import { InputSelect } from "@/components/input-select/input-select";
 
 const SellTickets = () => {

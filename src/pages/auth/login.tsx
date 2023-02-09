@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import { Formik } from "formik";
 import { Button, TextField } from "@mui/material";
-import { useLogin } from "./hooks/use-login";
+import { useLogin } from "@/hooks/auth/use-login";
 import { LoginValidationSchema } from "@/validations/login-validation-schema";
 
 const Login = () => {
