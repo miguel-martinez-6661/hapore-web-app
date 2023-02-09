@@ -5,10 +5,10 @@ import { TicketQuery } from "@/constants/query-names";
 import { fetchTickets } from "@/queries/ticket-queries";
 
 const TABLE_COL = [
-  "Nro Entrada",
   "Tipo de Entrada",
   "Vendido a",
   "Precio",
+  "Vendido por",
   "Fecha Venta",
   "Activo",
 ];
@@ -24,7 +24,7 @@ export const useSoldTickets = () => {
 
   const data = useMemo(() => {
     return apiTickets?.data?.data?.map((ticket: any) => [
-      ticket.ticketNumber,
+      // ticket.ticketNumber,
       ticket.TicketType.name,
       ticket.Sale.Customer.name,
       `Gs. ${
@@ -32,6 +32,7 @@ export const useSoldTickets = () => {
           ? ticket.TicketType.netPrice
           : ticket.TicketType.grossPrice
       }`,
+      ticket.Sale.User.name,
       format(new Date(ticket.Sale.createdAt), "dd/MM/yyyy"),
       ticket.active ? "Si" : "No",
     ]);

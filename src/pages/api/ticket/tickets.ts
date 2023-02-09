@@ -1,5 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createTicketsForSale, fetchTickets } from "@/controllers";
+import { getSession } from "next-auth/react";
 
 export default async function handler(
   req: NextApiRequest,
@@ -22,7 +23,17 @@ export default async function handler(
       break;
 
     case "POST": // Create new tickets for a sale
+      const session = await getSession({ req });
       const { name, dni, phoneNumber, ticketTypeId, quantity } = req.body;
+      // @ts-ignore
+      const userId = session?.user?.id;
+
+      if (!userId) {
+        res.status(401).json({
+          message: "Error: usuario no autenticado.",
+        });
+        return;
+      }
 
       try {
         const result = await createTicketsForSale({
@@ -31,6 +42,7 @@ export default async function handler(
           phoneNumber,
           ticketTypeId,
           quantity,
+          userId,
         });
         res.status(201).json(result);
       } catch (error) {

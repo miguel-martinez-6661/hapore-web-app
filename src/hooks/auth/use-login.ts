@@ -1,8 +1,6 @@
-import { useCallback, useEffect } from "react";
-import { useRouter } from "next/router";
+import { useCallback } from "react";
 import { LoginParams } from "@/types/api-auth-request";
 import { signIn } from "next-auth/react";
-import { useAuthContext } from "@/providers/auth-provider/use-auth-context";
 
 const initialFormValues = {
   email: "",
@@ -10,9 +8,6 @@ const initialFormValues = {
 };
 
 export const useLogin = () => {
-  const router = useRouter();
-  const { isLoggedIn } = useAuthContext();
-
   const handleSubmitForm = useCallback(async (values: LoginParams) => {
     try {
       await signIn("credentials", { ...values });
@@ -20,12 +15,6 @@ export const useLogin = () => {
       console.error(error);
     }
   }, []);
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      router.push("/");
-    }
-  }, [router, isLoggedIn]);
 
   return {
     initialFormValues,

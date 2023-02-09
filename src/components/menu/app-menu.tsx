@@ -1,10 +1,10 @@
 import React, { useState } from "react";
+import { signOut } from "next-auth/react";
 import { HiMenu, HiUserCircle } from "react-icons/hi";
 import { colors } from "@/constants";
+import { useAuthContext } from "@/providers/auth-provider/use-auth-context";
 import { MobileMenu } from "./mobile-menu";
 import { DesktopMenu } from "./desktop-menu";
-import { signOut } from "next-auth/react";
-import { useAuthContext } from "@/providers/auth-provider/use-auth-context";
 
 interface MenuHeadProps {
   onClick: () => void;
@@ -34,15 +34,19 @@ export const AppMenu = () => {
     setShowMobileMenu(!showMobileMenu);
   };
 
+  const handleSignOut = async () => {
+    await signOut({ redirect: true, callbackUrl: "/auth/login" });
+  };
+
   return (
     <>
       <MenuHead onClick={handleShowMobileMenu} />
       <MobileMenu
         visible={showMobileMenu}
         onClose={handleShowMobileMenu}
-        onClickLogout={signOut}
+        onClickLogout={handleSignOut}
       />
-      <DesktopMenu onClickLogout={signOut} />
+      <DesktopMenu onClickLogout={handleSignOut} />
     </>
   );
 };

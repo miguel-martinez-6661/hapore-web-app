@@ -14,6 +14,7 @@ export interface CreateTicketsForSaleParams {
   phoneNumber: string;
   ticketTypeId: number;
   quantity: number;
+  userId: number;
 }
 
 export interface CreateTicketTypeParams {

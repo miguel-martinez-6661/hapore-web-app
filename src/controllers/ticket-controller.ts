@@ -16,6 +16,7 @@ export const fetchTickets = async ({
         Sale: {
           include: {
             Customer: true,
+            User: true,
           },
         },
         TicketType: true,
@@ -42,6 +43,7 @@ export const createTicketsForSale = async ({
   phoneNumber,
   ticketTypeId,
   quantity,
+  userId,
 }: CreateTicketsForSaleParams): Promise<Sale> => {
   try {
     const customerDni = `${dni}`.trim();
@@ -71,7 +73,7 @@ export const createTicketsForSale = async ({
         },
         User: {
           connect: {
-            id: 1, // Replace by the real user id
+            id: userId,
           },
         },
         total: (ticketTypeUsed?.grossPrice || 0) * quantity,
