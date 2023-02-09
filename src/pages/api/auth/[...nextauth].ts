@@ -7,7 +7,11 @@ export const authOptions: AuthOptions = {
     Credential({
       name: "credentials",
       credentials: {
-        email: { label: "Email", type: "text", placeholder: "juan@google.com" },
+        email: {
+          label: "Email",
+          type: "text",
+          placeholder: "guido@hapore.com",
+        },
         password: {
           label: "Contraseña",
           type: "password",

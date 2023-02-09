@@ -1,13 +1,13 @@
-import httpClient from "@/network/httpClient";
+import axios from "axios";
 import {
   CreateTicketSaleParams,
   CreateTicketTypeParams,
 } from "@/types/api-tickets-request";
 
 export const createTicketType = async (ticket: CreateTicketTypeParams) => {
-  return httpClient.post("/ticket/ticket-types", ticket);
+  return axios.post("/api/ticket/ticket-types", ticket);
 };
 
 export const createTicketsSale = async (payload: CreateTicketSaleParams) => {
-  return httpClient.post("/ticket/tickets", payload);
+  return axios.post("/api/ticket/tickets", payload);
 };

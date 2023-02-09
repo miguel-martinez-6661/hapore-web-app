@@ -1,11 +1,10 @@
-import httpClient from "@/network/httpClient";
 import { FetchTicketsParams } from "@/types/api-tickets-request";
+import axios from "axios";
 
 export const fetchTickets = async ({ page }: FetchTicketsParams) => {
-  console.log({ httpClient: httpClient.getUri() });
-  return await httpClient.get(`/ticket/tickets?page=${page}`);
+  return await axios.get(`/api/ticket/tickets?page=${page}`);
 };
 
 export const fetchTicketTypes = async () => {
-  return await httpClient.get("/ticket/ticket-types");
+  return await axios.get("/api/ticket/ticket-types");
 };

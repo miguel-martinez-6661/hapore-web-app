@@ -30,19 +30,15 @@ const Home = () => {
               id="date"
               label="Desde"
               type="date"
+              className="w-1/2 lg:w-1/4"
               defaultValue={format(filters.from, "yyyy-MM-dd")}
-              // InputLabelProps={{
-              //   shrink: true,
-              // }}
             />
             <TextField
               id="date"
               label="Hasta"
               type="date"
+              className="w-1/2 lg:w-1/4"
               defaultValue={format(filters.to, "yyyy-MM-dd")}
-              // InputLabelProps={{
-              //   shrink: true,
-              // }}
             />
           </div>
           <div className="py-5 rounded-lg grid grid-rows-2 md:grid-rows-1 lg:grid-rows-1 grid-flow-col gap-4 mx-5 mt-2 md:my-10">

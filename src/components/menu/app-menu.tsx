@@ -6,7 +6,11 @@ import { DesktopMenu } from "./desktop-menu";
 import { signOut } from "next-auth/react";
 import { useAuthContext } from "@/providers/auth-provider/use-auth-context";
 
-const MobileMenuButton = ({ onClick }: { onClick: () => void }) => {
+interface MenuHeadProps {
+  onClick: () => void;
+}
+
+const MenuHead = ({ onClick }: MenuHeadProps) => {
   const { user } = useAuthContext();
 
   return (
@@ -32,7 +36,7 @@ export const AppMenu = () => {
 
   return (
     <>
-      <MobileMenuButton onClick={handleShowMobileMenu} />
+      <MenuHead onClick={handleShowMobileMenu} />
       <MobileMenu
         visible={showMobileMenu}
         onClose={handleShowMobileMenu}

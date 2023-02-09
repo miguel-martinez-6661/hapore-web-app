@@ -9,15 +9,14 @@ interface PageProps {
 }
 
 const Page = ({ children }: PageProps) => {
-  const { isLoggedIn } = useAuthContext();
-  const { replace } = useRouter();
+  // const { isLoggedIn } = useAuthContext();
+  // const { replace } = useRouter();
 
-  useEffect(() => {
-    console.log({ isLoggedIn });
-    if (!isLoggedIn) {
-      replace("/auth/login");
-    }
-  }, [isLoggedIn, replace]);
+  // useEffect(() => {
+  //   if (!isLoggedIn) {
+  //     replace("/auth/login");
+  //   }
+  // }, [isLoggedIn, replace]);
 
   return (
     <>
