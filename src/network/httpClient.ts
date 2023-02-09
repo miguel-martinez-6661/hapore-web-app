@@ -1,4 +1,6 @@
 import axios, { AxiosInstance } from "axios";
+
+const HOST = process.env.API_HOST;
 class HttpClient {
   private static classInstance: AxiosInstance;
 
@@ -6,7 +8,7 @@ class HttpClient {
     if (!this.classInstance) {
       // @ts-ignore
       this.classInstance = new axios.create({
-        baseURL: "http://localhost:3000/api",
+        baseURL: `${HOST}/api`,
         headers: {
           "Content-Type": "application/json",
         },
