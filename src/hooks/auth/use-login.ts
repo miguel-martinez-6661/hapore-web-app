@@ -1,6 +1,8 @@
 import { useCallback } from "react";
-import { LoginParams } from "@/types/api-auth-request";
 import { signIn } from "next-auth/react";
+import { LoginParams } from "@/types/api-auth-request";
+import { useAlertContext } from "@/components/alerts/use-alert-context";
+import { AlertType } from "@/components/alerts/alert";
 
 const initialFormValues = {
   email: "",
@@ -8,13 +10,16 @@ const initialFormValues = {
 };
 
 export const useLogin = () => {
-  const handleSubmitForm = useCallback(async (values: LoginParams) => {
-    try {
-      await signIn("credentials", { ...values });
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
+  const { show } = useAlertContext();
+  const handleSubmitForm = useCallback(
+    async (values: LoginParams) => {
+      signIn("credentials", { ...values }).catch((err) => {
+        console.error(err);
+        show?.(AlertType.error, "No se ha podido iniciar sesión");
+      });
+    },
+    [show]
+  );
 
   return {
     initialFormValues,

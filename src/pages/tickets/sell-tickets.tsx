@@ -32,6 +32,7 @@ const SellTickets = () => {
                   label="Numero Cedula"
                   variant="outlined"
                   type="number"
+                  placeholder="Ej: 4.633.552"
                   value={values.dni}
                   onChange={handleChange}
                   required
@@ -40,6 +41,7 @@ const SellTickets = () => {
                   name="name"
                   label="Nombre y Apellido"
                   variant="outlined"
+                  placeholder="Ej: Juan Perez"
                   value={values.name}
                   onChange={handleChange}
                   required
@@ -50,6 +52,8 @@ const SellTickets = () => {
                   variant="outlined"
                   value={values.phoneNumber}
                   onChange={handleChange}
+                  placeholder="Ej: (994)123456"
+                  inputProps={{ maxLength: 9 }}
                   required
                 />
                 <InputSelect

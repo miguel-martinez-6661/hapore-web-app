@@ -28,8 +28,10 @@
     "jsonwebtoken": "^9.0.0",
     "next": "13.1.6",
     "next-auth": "^4.19.2",
+    "qrcode": "^1.5.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "twilio": "^4.7.2",
     "typescript": "4.9.5",
     "yup": "^0.32.11"
   },
@@ -38,6 +40,7 @@
     "@types/bcryptjs": "^2.4.2",
     "@types/jsonwebtoken": "^9.0.1",
     "@types/mui-datatables": "^4.3.1",
+    "@types/qrcode": "^1.5.0",
     "autoprefixer": "^10.4.13",
     "mui-datatables": "^4.3.0",
     "postcss": "^8.4.21",

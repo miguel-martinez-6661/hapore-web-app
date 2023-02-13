@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FormControl, InputLabel, MenuItem, Select } from "@mui/material";
 
 export interface InputSelectOption {
@@ -23,6 +23,12 @@ export const InputSelect = ({
   onChange,
   required,
 }: InputSelectProps) => {
+  useEffect(() => {
+    if (!value || (value === "-1" && options?.length)) {
+      onChange({ target: { name, value: "1" } });
+    }
+  }, [name, value, onChange, options]);
+
   return (
     <>
       <FormControl fullWidth>

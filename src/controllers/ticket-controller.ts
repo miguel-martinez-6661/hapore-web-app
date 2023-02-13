@@ -1,10 +1,15 @@
 import { Sale } from "@prisma/client";
+import prisma from "prisma/context";
 import {
   CreateTicketsForSaleParams,
   FetchTicketsParams,
   FetchTicketsResponse,
 } from "@/types/api-tickets-request";
-import prisma from "prisma/context";
+import { base64ToFile, generateQR, getTemplate, sendMessage } from "@/helpers";
+import { MEDIA_FOLDER } from "@/constants/storage";
+import { EXAMPLE_MSG, TICKET_SALE_MSG } from "@/constants/message-templates";
+
+const PY_CODE = "+595";
 
 export const fetchTickets = async ({
   page,
@@ -81,18 +86,34 @@ export const createTicketsForSale = async ({
       },
     });
 
-    const ticketsToCreate = [];
+    const ticketsCode: string[] = [];
     for (let i = 0; i < quantity; i++) {
-      ticketsToCreate.push({
-        ticketTypeId,
-        active: true,
-        saleId: sale.id,
+      const aTicket = await prisma.ticket.create({
+        data: {
+          ticketTypeId,
+          saleId: sale.id,
+          active: true,
+        },
       });
+
+      const ticketQrCode = await generateQR(aTicket.ticketNumber);
+
+      const result = base64ToFile(
+        {
+          fileName: `${aTicket.ticketNumber}.png`,
+          base64: ticketQrCode as string,
+        },
+        MEDIA_FOLDER.TICKET
+      );
+
+      ticketsCode.push(result);
     }
 
-    await prisma.ticket.createMany({
-      data: ticketsToCreate,
-    });
+    sendMessage(
+      `${PY_CODE}${phoneNumber}`,
+      getTemplate(EXAMPLE_MSG, [100]),
+      ticketsCode
+    );
 
     return sale;
   } catch (error) {

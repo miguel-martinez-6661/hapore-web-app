@@ -4,6 +4,7 @@ import { Formik } from "formik";
 import { Button, TextField } from "@mui/material";
 import { useLogin } from "@/hooks/auth/use-login";
 import { LoginValidationSchema } from "@/validations/login-validation-schema";
+import { getSession } from "next-auth/react";
 
 const Login = () => {
   const { initialFormValues, handleSubmitForm } = useLogin();
@@ -73,5 +74,22 @@ const Login = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const session = await getSession(context);
+
+  if (session) {
+    return {
+      redirect: {
+        destination: "/",
+        permanent: false,
+      },
+    };
+  }
+
+  return {
+    props: { session },
+  };
+}
 
 export default Login;

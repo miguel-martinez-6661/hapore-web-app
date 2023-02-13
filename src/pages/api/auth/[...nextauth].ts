@@ -20,10 +20,17 @@ export const authOptions: AuthOptions = {
       },
       // @ts-ignore
       async authorize(credentials) {
-        return await loginUser({
-          email: credentials!.email,
-          password: credentials!.password,
-        });
+        try {
+          const user = await loginUser({
+            email: credentials!.email,
+            password: credentials!.password,
+          });
+
+          return user;
+        } catch (error) {
+          console.error(error);
+          throw new Error("No se ha podido autenticar.");
+        }
       },
     }),
   ],
@@ -44,9 +51,6 @@ export const authOptions: AuthOptions = {
         id: token.user.id,
       };
       return session;
-    },
-    signIn() {
-      return "/";
     },
   },
 };
