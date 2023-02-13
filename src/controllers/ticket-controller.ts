@@ -37,8 +37,8 @@ export const fetchTicketStats = async (from: Date, to: Date) => {
     });
 
     const total = result.length;
-    const actives = result.filter((ticket) => !ticket.active).length;
-    const canceled = result.filter((ticket) => ticket.active).length;
+    const canceled = result.filter((ticket) => !ticket.active).length;
+    const actives = result.filter((ticket) => ticket.active).length;
 
     return { total, actives, canceled };
   } catch (error) {
