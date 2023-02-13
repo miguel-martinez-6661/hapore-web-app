@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { createTicketsForSale, fetchTickets } from "@/controllers";
 import { getSession } from "next-auth/react";
+import { validateSession } from "@/helpers/session-helper";
 
 export default async function handler(
   req: NextApiRequest,
@@ -10,6 +11,7 @@ export default async function handler(
     case "GET": // List all tickets
       const { page } = req.query;
       try {
+        validateSession(req);
         const { data, total } = await fetchTickets({ page: Number(page) });
         res.status(200).json({
           data,
@@ -36,6 +38,7 @@ export default async function handler(
       }
 
       try {
+        await validateSession(req);
         const result = await createTicketsForSale({
           name,
           dni,

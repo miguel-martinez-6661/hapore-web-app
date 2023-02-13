@@ -60,7 +60,7 @@ export const MobileMenu = ({
               </Link>
             </li>
             <li>
-              <Link href="/scan" className="flex text-white" onClick={onClose}>
+              <Link href="/scanner" className="flex text-white" onClick={onClose}>
                 <RiQrScan2Line size={24} className="mb-6 mr-2" />
                 <span>Escaneo de QR</span>
               </Link>

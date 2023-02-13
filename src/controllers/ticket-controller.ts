@@ -16,6 +16,37 @@ import { EXAMPLE_MSG } from "@/constants/message-templates";
 
 const PY_CODE = "+595";
 
+export const fetchTicketStats = async (from: Date, to: Date) => {
+  try {
+    const result = await prisma.ticket.findMany({
+      include: {
+        Sale: {
+          select: {
+            createdAt: true,
+          },
+        },
+      },
+      where: {
+        Sale: {
+          createdAt: {
+            gte: from,
+            lte: to,
+          },
+        },
+      },
+    });
+
+    const total = result.length;
+    const actives = result.filter((ticket) => !ticket.active).length;
+    const canceled = result.filter((ticket) => ticket.active).length;
+
+    return { total, actives, canceled };
+  } catch (error) {
+    console.error("API FETCH TICKETS STATS", error);
+    throw error;
+  }
+};
+
 export const fetchTickets = async ({
   page,
 }: FetchTicketsParams): Promise<FetchTicketsResponse> => {

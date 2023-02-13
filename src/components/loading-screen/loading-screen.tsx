@@ -8,7 +8,7 @@ interface LoadingScreenProps {
 export const LoadingScreen = ({ visible }: LoadingScreenProps) => {
   return (
     <div
-      className={`flex flex-col items-center justify-center absolute bg-black/50 top-0 left-0 w-screen h-screen ${
+      className={`flex flex-col items-center justify-center absolute z-10 bg-black/50 top-0 left-0 w-full h-full ${
         visible ? "visible" : "invisible"
       }`}
     >

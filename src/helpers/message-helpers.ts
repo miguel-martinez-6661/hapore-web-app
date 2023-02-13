@@ -1,4 +1,3 @@
-// import fs from "fs";
 import twilio from "twilio";
 
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
@@ -6,7 +5,7 @@ const authToken = process.env.TWILIO_AUTH_TOKEN;
 const appPhoneNumber = process.env.TWILIO_PHONE_NUMBER;
 const channel = "whatsapp:";
 
-const client = twilio(accountSid, authToken);
+export const twilioClient = twilio(accountSid, authToken);
 
 export const sendMessage = async (
   to: string,
@@ -14,18 +13,17 @@ export const sendMessage = async (
   mediaUrls?: string[]
 ) => {
   try {
-    console.log("SENDING MESSAGE", mediaUrls);
-    const message = await client.messages.create({
+    const message = await twilioClient.messages.create({
       mediaUrl: mediaUrls,
       from: `${channel}${appPhoneNumber}`,
       to: `${channel}${to}`,
       body,
     });
 
-    setTimeout(async () => {
-      const lastMsg = await client.messages(message.sid).fetch();
-      console.log(lastMsg);
-    }, 10000);
+    // setTimeout(async () => {
+    //   const lastMsg = await twilioClient.messages(message.sid).fetch();
+    //   console.log(lastMsg);
+    // }, 10000);
 
     console.info(message);
   } catch (error) {

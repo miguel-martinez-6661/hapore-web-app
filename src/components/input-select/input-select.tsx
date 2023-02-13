@@ -24,8 +24,8 @@ export const InputSelect = ({
   required,
 }: InputSelectProps) => {
   useEffect(() => {
-    if (!value || (value === "-1" && options?.length)) {
-      onChange({ target: { name, value: "1" } });
+    if (!value || (options.length && value === "-1")) {
+      onChange({ target: { name, value: 1 } });
     }
   }, [name, value, onChange, options]);
 

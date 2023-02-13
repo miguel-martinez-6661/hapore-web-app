@@ -1,6 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { CreateTicketTypeParams } from "@/types/api-tickets-request";
 import { fetchTicketTypes, upsertTicketType } from "@/controllers";
+import { validateSession } from "@/helpers/session-helper";
 
 export default async function handler(
   req: NextApiRequest,
@@ -20,6 +21,7 @@ export default async function handler(
 
     case "POST":
       try {
+        await validateSession(req);
         const params = req.body as CreateTicketTypeParams;
         const result = await upsertTicketType(params);
         res.status(201).json(result);

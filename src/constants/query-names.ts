@@ -3,9 +3,18 @@ export const AuthMutation = {
   VALIDATE_TOKEN: "VALIDATE_TOKEN",
 };
 
+export const SalesQuery = {
+  FETCH_SALE_STATS: "FETCH_SALE_STATS",
+};
+
+export const InvitationsQuery = {
+  FETCH_INVITATIONS_STATS: "FETCH_INVITATIONS_STATS",
+};
+
 export const TicketQuery = {
   FETCH_TICKETS: "FETCH_TICKETS",
   FETCH_TICKET_TYPES: "FETCH_TICKET_TYPES",
+  FETCH_TICKET_STATS: "FETCH_TICKET_STATS",
 };
 
 export const TicketMutation = {
