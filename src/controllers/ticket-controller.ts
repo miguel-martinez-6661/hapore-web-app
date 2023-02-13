@@ -5,9 +5,14 @@ import {
   FetchTicketsParams,
   FetchTicketsResponse,
 } from "@/types/api-tickets-request";
-import { base64ToFile, generateQR, getTemplate, sendMessage } from "@/helpers";
+import {
+  base64ToFileUrl,
+  generateQR,
+  getTemplate,
+  sendMessage,
+} from "@/helpers";
 import { MEDIA_FOLDER } from "@/constants/storage";
-import { EXAMPLE_MSG, TICKET_SALE_MSG } from "@/constants/message-templates";
+import { EXAMPLE_MSG } from "@/constants/message-templates";
 
 const PY_CODE = "+595";
 
@@ -97,8 +102,7 @@ export const createTicketsForSale = async ({
       });
 
       const ticketQrCode = await generateQR(aTicket.ticketNumber);
-
-      const result = base64ToFile(
+      const result = base64ToFileUrl(
         {
           fileName: `${aTicket.ticketNumber}.png`,
           base64: ticketQrCode as string,

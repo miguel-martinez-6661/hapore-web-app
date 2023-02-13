@@ -1,8 +1,9 @@
 import fs from "fs";
 
-const URI = process.env.NEXT_PUBLIC_API_URL;
+// const URI = process.env.NEXT_PUBLIC_API_URL;
+const URI = "https://e521-181-122-241-112.sa.ngrok.io/";
 
-export const base64ToFile = (
+export const base64ToFileUrl = (
   file: { base64: string; fileName: string },
   targetFolder: string
 ) => {
@@ -17,5 +18,5 @@ export const base64ToFile = (
     console.log(err);
   });
 
-  return `${URI}/${targetFolder}/${fileName}`;
+  return `${URI}api/media?target=${targetFolder}&filename=${fileName}`;
 };
